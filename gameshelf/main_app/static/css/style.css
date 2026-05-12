@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #222;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.navbar a {
+    margin-right: 15px;
+}
+
+.game-card {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.button {
+    background-color: #4caf50;
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.button-delete {
+    background-color: #dc3545;
+}

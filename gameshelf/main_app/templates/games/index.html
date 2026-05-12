@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>All Games</title>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/games/">All Games</a>
+    </div>
+
+    <a href="{% url 'game-create' %}" class="button">Add New Game</a>
+
+    <h1>🎮 All Games</h1>
+
+    {% for game in games %}
+
+        <div class="game-card">
+
+            <a href="{% url 'game-detail' game.id %}">
+                <h2 style="color:black;">{{ game.title }}</h2>
+            </a>
+
+            <p>Platform: {{ game.platform }}</p>
+
+            <p>Genre: {{ game.genre }}</p>
+            
+            <p>Status: {{ game.status }}</p>
+
+        </div>
+
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Game Detail</title>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/games/">All Games</a>
+    </div>
+
+    <div class="game-card">
+        <h1>{{ game.title }}</h1>
+
+        <p>Platform: {{ game.platform }}</p>
+
+        <p>Genre: {{ game.genre }}</p>
+
+        <p>Status: {{ game.status }}</p>
+
+        <p>Rating: {{ game.rating }}</p>
+        
+        <p>Description: {{ game.description }}</p>        
+
+        <br>
+
+        <a href="{% url 'game-update' game.id %}" class="button">Edit</a>
+        <a href="{% url 'game-delete' game.id %}" class="button button-delete">Delete</a>
+
+    </div>
+
+    <a href="{% url 'game-index' %}">Back to All Games</a>
+    
+</body>
+</html>
