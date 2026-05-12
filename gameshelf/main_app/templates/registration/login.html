@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Log In</title>
+
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/games/">All Games</a>
+        <a href="/tags/">Tags</a>
+    </div>
+
+    <div class="game-card">
+        <h1>Log In</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="button">Log In</button>
+        </form>
+    </div>
+
+</body>
+</html>

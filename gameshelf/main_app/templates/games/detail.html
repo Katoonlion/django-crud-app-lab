@@ -11,8 +11,25 @@
 <body>
 
     <div class="navbar">
+        
         <a href="/">Home</a>
         <a href="/games/">All Games</a>
+        <a href="/tags/">Tags</a>
+
+        {% if user.is_authenticated %}
+
+            <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="button">Log Out</button>
+            </form>
+
+        {% else %}
+
+            <a href="{% url 'login' %}" class="button">Log In</a>
+            <a href="{% url 'signup' %}" class="button">Sign Up</a>
+
+        {% endif %}
+
     </div>
 
     <div class="game-card">
@@ -30,12 +47,70 @@
 
         <br>
 
-        <a href="{% url 'game-update' game.id %}" class="button">Edit</a>
-        <a href="{% url 'game-delete' game.id %}" class="button button-delete">Delete</a>
+        <hr>
+
+        <h2>Tags</h2>
+
+        {% for tag in game.tags.all %}
+
+            <span class="tag">
+                {{ tag.name }}
+            </span>
+
+        {% empty %}
+
+            <p>No tags yet.</p>
+
+        {% endfor %}
+
+        <br><br>
+
+        {% if user == game.user %}
+            <a href="{% url 'game-update' game.id %}" class="button">Edit</a>
+            <a href="{% url 'game-delete' game.id %}" class="button button-delete">Delete</a>
+        {% endif %}
+
+        <hr>
+
+        {% if user.is_authenticated %}
+
+            <h2>Add Review</h2>
+
+            <form action="{% url 'add-review' game.id %}" method="POST">
+                {% csrf_token %}
+                {{ review_form.as_p }}
+
+                <button type="submit" class="button">Add Review</button>
+            </form>
+
+        {% endif %}
+
+        <hr>
+
+        <h2>Reviews</h2>
+
+        {% for review in game.review_set.all %}
+
+            <div class="game-card">
+                <p><strong>{{ review.player_name }}</strong></p>
+                <p>Rating: {{ review.rating }}</p>
+                <p>{{ review.comment }}</p>
+                
+                {% if user == review.user %}
+                    <a href="{% url 'review-update' review.id %}" class="button">Edit Review</a>
+                    <a href="{% url 'review-delete' review.id %}" class="button button-delete">Delete Review</a>
+                {% endif %}
+
+            </div>
+
+            {% empty %}
+                <p>No reviews yet.</p>
+
+        {% endfor %}
 
     </div>
 
-    <a href="{% url 'game-index' %}">Back to All Games</a>
+    <a href="{% url 'game-index' %}" class="button">Back to All Games</a>
     
 </body>
 </html>

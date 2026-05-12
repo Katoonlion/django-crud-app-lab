@@ -4,11 +4,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Review</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <title>Game Shelf</title>
 </head>
+<body>
+
 <body>
 
     <div class="navbar">
@@ -33,14 +33,15 @@
 
     </div>
 
-    <div>
-        <h1>🎮 Game Shelf</h1>
+    <div class="game-card">
+        <h1>Edit Review</h1>
 
-        <p>Track your favorite games!</p>
-                
-        <br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-        <a href="/games/" class="button">View Games</a>        
+            <button type="submit" class="button">Save</button>
+        </form>
     </div>
 
 </body>

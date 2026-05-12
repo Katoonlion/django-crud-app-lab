@@ -4,10 +4,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <title>Game Shelf</title>
+    <title>Delete Tag</title>
+
 </head>
 <body>
 
@@ -33,14 +33,19 @@
 
     </div>
 
-    <div>
-        <h1>🎮 Game Shelf</h1>
+    <div class="game-card">
+        <h1>Delete Tag</h1>
 
-        <p>Track your favorite games!</p>
-                
+        <p>Are you sure you want to delete {{ tag.name }}?</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="button button-delete">Yes, Delete</button>
+        </form>
+
         <br>
 
-        <a href="/games/" class="button">View Games</a>        
+        <a href="{% url 'tag-index' %}" class="button">Cancel</a>
     </div>
 
 </body>
